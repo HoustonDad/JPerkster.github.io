@@ -1,0 +1,16 @@
+<h2>Basic OBS Usage</h2>
+
+<hr />
+
+<p>The osc utility allows you to interact with source files using an SVN-like interface, make local builds and numerous other things used in lifecycle management. run <code class="highlighter-rouge">osc help</code> to see a full list of all the command available.</p>
+
+<p>Some basic common commands are:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">osc ls isv:cpanel:EA4</code> - See all packages hosted to cPanel’s EasyApache4 repository</li>
+  <li><code class="highlighter-rouge">osc branch isv:cpanel:EA4 scl-php71 home:$MY_USER:$BRANCH_NAME</code> branch the scl-php71 package into your own branch</li>
+  <li><code class="highlighter-rouge">osc co home:$MY_USER:$BRANCH_NAME</code> Checkout a branch to a local working directory</li>
+  <li><code class="highlighter-rouge">osc addremove .</code> add all files and track all removals from a directory (useful before a commit)</li>
+  <li><code class="highlighter-rouge">osc ci -m "my commit"</code> commit your changes</li>
+  <li><code class="highlighter-rouge">osc build</code> build a local copy of your package</li>
+</ul>

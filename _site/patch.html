@@ -1,0 +1,23 @@
+<h2>Patch</h2>
+
+<hr />
+
+<p>Patching an RPM is a reletively easy process that involves a few small updates to the SPEC (specification) file and adding the patch file to the repository.</p>
+
+<ol>
+  <li>Branch that package you are wanting to patch using <code class="highlighter-rouge">osc br isv:cpanel:EA4 some_package home:$MY_USER:$MY_PATCHED</code> and then cd into the directory with the content in it.</li>
+  <li>Open the .spec file in your editor of choice</li>
+  <li>Update the following fields:
+    <ul>
+      <li>Update the number next to <code class="highlighter-rouge">release_prefix</code> by one. This is used to indicate the number of changes to a specific version of software</li>
+      <li>Add a Patch###: line with a unique patch file and number after the other Patch directives</li>
+      <li>example: <code class="highlighter-rouge">Patch100: foo.patch</code></li>
+      <li>in the %prep section, after the other %patch directives add your patch directive</li>
+      <li>example: <code class="highlighter-rouge">%patch 100 -p1 -b foo</code></li>
+      <li>Add a new changelog entry in the %changelog section describing your change. See other entries for example format.</li>
+    </ul>
+  </li>
+  <li>Copy the .patch file into the checked out directory and add it to the repository using <code class="highlighter-rouge">osc add $filename</code></li>
+  <li>Test your change locally using <code class="highlighter-rouge">osc build</code></li>
+  <li>Commit your changes using <code class="highlighter-rouge">osc ci -m "some message"</code></li>
+</ol>

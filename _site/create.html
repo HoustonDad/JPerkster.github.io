@@ -1,0 +1,42 @@
+<h2>Create</h2>
+
+<hr />
+
+<h4>Create your package branch</h4>
+
+<p>It is easiest to start this by branching a package from isv:cpanel:EA4 and immediately removing it as this will set up the build dependencies for you.</p>
+
+<p>See <code class="highlighter-rouge">osc help $command</code> for more information on each of these commands (f.ex. <code class="highlighter-rouge">osc help mkpac</code>)</p>
+
+<p><code class="highlighter-rouge">osc branch isv:cpanel:EA4 scl-php71 home:$MY_USER:new_package</code></p>
+
+<p><code class="highlighter-rouge">osc co home:geckmatic:new_package</code></p>
+
+<p><code class="highlighter-rouge">cd home:geckmatic:new_package</code></p>
+
+<p><code class="highlighter-rouge">osc delete scl-php71</code></p>
+
+<p><code class="highlighter-rouge">osc mkpac ea-php-php56-yaml</code></p>
+
+<p><code class="highlighter-rouge">osc ci -m "delete this package and add the new package"</code></p>
+
+<h4>Add your sources and packages</h4>
+<p>Now you can change directory into the <code class="highlighter-rouge">ea-php56-php-yaml</code> and add your sources and spec file.</p>
+
+<p>For creating new packages we have provided a <a href="https://github.com/CpanelInc/ea4-example-specs">repository</a> containing template specifications and example implementation on <a href="https://github.com/CpanelInc/ea4-example-specs">GitHub</a>. Editing the template file from this repo and filling in items between the <code class="highlighter-rouge">[% %]</code> tags should result in a building RPM. To see an example of this already completed, look at the differences between the .template file and the .spec file. For basic information on how build RPMs, please see <a href="http://www.rpm.org/max-rpm/">Maximum RPM</a></p>
+
+<ol>
+  <li>Place the .spec file in the package directory (<code class="highlighter-rouge">home:$MY_USER:newpackage/ea-php-php56-yaml</code>)</li>
+  <li>Copy all the sources into the package directory
+    <ul>
+      <li>if you just want to build the example given here, just copy the contents of the SOURCES/ from the example directory of your choice into the package directory</li>
+    </ul>
+  </li>
+  <li>run <code class="highlighter-rouge">osc addremove .</code> on the package directory</li>
+  <li><code class="highlighter-rouge">osc build</code> to test your change locally</li>
+  <li><code class="highlighter-rouge">osc ci -m "First commit"</code> to commit to OBS</li>
+</ol>
+
+<p>View the Project page on <a href="https://build.opensuse.org">Open Build Server</a> to monitor build status or run <code class="highlighter-rouge">osc results</code>.</p>
+
+<p>Visit the repository on <a href="http://download.opensuse.org/repositories/">download.opensuse.org</a> or run <code class="highlighter-rouge">osc getbinaries</code>.</p>
